@@ -1,0 +1,257 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #403d39;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2.5rem 5rem;
+}
+
+.btn {
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  color: #edede9;
+  width: 75px;
+  height: 75px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #403d39;
+  border-radius: 50%;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn:hover {
+  transform: translateY(-5px);
+}
+
+ion-icon {
+  font-size: 32px;
+}
+
+h1,
+.heading {
+  text-align: center;
+  color: #edede9;
+  font-size: 3rem;
+  font-weight: 600;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.heading {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 1.2rem;
+  text-align: left;
+}
+
+.main-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.75rem;
+}
+
+.bill-list {
+  width: 100%;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.tbl {
+  width: 100%;
+  border-radius: 15px;
+  background: #fff;
+  padding: 0.25rem;
+}
+
+thead th {
+  background: #403d39;
+  border-radius: 10px;
+  color: #fff;
+}
+
+th,
+td {
+  padding: 0.75rem 0.5rem;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+.final-total {
+  /* text-align: right; */
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  font-size: 1.2rem;
+  margin: 0.5rem 0;
+  /* padding-right: 1rem; */
+}
+
+.final-total .inner {
+  padding: 0.275rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 10px;
+  gap: 0.2rem;
+}
+
+.inner > div {
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* form {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+}
+
+.field-1 {
+  grid-area: 1 / 1 / 2 / 5;
+}
+.field-2 {
+  grid-area: 2 / 1 / 3 / 3;
+}
+.field-3 {
+  grid-area: 2 / 3 / 3 / 5;
+}
+.field-4 {
+  grid-area: 3 / 2 / 4 / 4;
+} */
+
+#filter-form {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 10px;
+  padding: 0 20px;
+  /* border-radius: 10px; */
+  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); */
+}
+
+.field {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  /* border-radius: 5px; */
+}
+.field label {
+  flex: 0.275 0.5;
+  color: #fff;
+}
+
+.field input,
+button {
+  flex: 1 0.75;
+  margin: 0.5rem;
+  padding: 0.5rem;
+  font-size: 18px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+button {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.field input:focus {
+  outline: none;
+  border-color: #1cb5e0;
+  background-color: #fff;
+}
+
+.field-1 {
+  grid-area: 1 / 1 / 2 / 5;
+}
+.field-2 {
+  grid-area: 2 / 1 / 3 / 3;
+}
+.field-3 {
+  grid-area: 2 / 3 / 3 / 5;
+}
+.field-4 {
+  grid-area: 3 / 1 / 4 / 3;
+}
+.field-5 {
+  grid-area: 3 / 3 / 4 / 5;
+}
+.field-6 {
+  grid-area: 4 / 2 / 5 / 4;
+}
+
+.no-data {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #edede9;
+  font-size: 1.2rem;
+}
+
+.export {
+  position: absolute;
+  top: 5%;
+  left: 90%;
+  width: 60px;
+  height: 60px;
+  z-index: 1;
+}
+
+.export ion-icon {
+  font-size: 28px;
+}
+
+::-webkit-scrollbar {
+  background: transparent;
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 15px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.copyright {
+  position: relative;
+  top: 1rem;
+  width: 100%;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #edede9;
+}

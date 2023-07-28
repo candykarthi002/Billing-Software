@@ -1,0 +1,274 @@
+:root {
+  --table-width: 900px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+  font-size: 20px;
+}
+
+.btn {
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  color: #edede9;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #403d39;
+  border-radius: 50%;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn:hover {
+  transform: translateY(-5px);
+}
+
+.edit {
+  position: absolute;
+  top: 5%;
+  left: 90%;
+}
+
+.delete {
+  position: absolute;
+  top: 5%;
+  left: 95%;
+}
+
+.print {
+  position: fixed;
+  top: 80%;
+  left: 90%;
+  width: 75px;
+  height: 75px;
+  z-index: 1;
+}
+
+ion-icon {
+  font-size: 24px;
+}
+
+.print ion-icon {
+  font-size: 34px;
+}
+
+.main-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.cust-details {
+  width: var(--table-width);
+  height: 150px;
+  padding-bottom: 1rem;
+  border: 2px solid black;
+  border-bottom: none;
+  /* font-family: "Poppins", sans-serif; */
+  font-weight: 700;
+}
+
+.cust-details > div {
+  padding-left: 5px;
+}
+
+.cust-addr {
+  width: 60%;
+  padding-left: 25px;
+  /* word-wrap: break-word; */
+}
+
+.bill-info {
+  width: var(--table-width);
+  height: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border: 2px solid black;
+  /* font-family: "Poppins", sans-serif; */
+  font-weight: 700;
+}
+
+.bill-info span:first-child {
+  padding-left: 5px;
+}
+
+.bill-info span:last-child {
+  padding-right: 5px;
+}
+
+.tbl-head,
+.tbl-body,
+.total-row {
+  width: calc(var(--table-width) + 4px);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.tbl-head span:first-child {
+  flex: 1;
+  border: 2px solid black;
+  border-top: none;
+  border-right: none;
+  /* font-family: "Poppins", sans-serif; */
+  font-weight: 700;
+}
+
+.tbl-head span:first-child > div {
+  padding-left: 50px;
+}
+
+.tbl-head span:last-child {
+  flex: 0.2;
+  border: 2px solid black;
+  border-top: none;
+  /* font-family: "Poppins", sans-serif; */
+  font-weight: 700;
+  text-align: center;
+}
+
+.left {
+  flex: 1;
+  height: 500px;
+  border: 2px solid black;
+  border-top: none;
+  border-right: none;
+  /* font-family: "Poppins", sans-serif; */
+  font-weight: 700;
+}
+
+.left .start {
+  padding-left: 5px;
+}
+
+.left .row-2,
+.left .row-3,
+.left .row-4,
+.left .row-5,
+.left .row-6 {
+  padding: 0 10px 0 5px;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.left .row-4,
+.left .row-5,
+.left .row-6,
+.left .row-8 {
+  margin-top: 15px;
+}
+
+.left .row-7 {
+  margin-top: 30px;
+}
+
+.left .row-7,
+.left .row-8 {
+  padding-left: 5px;
+}
+
+.right {
+  height: 500px;
+  flex: 0.2;
+  border: 2px solid black;
+  border-top: none;
+  /* font-family: "Poppins", sans-serif; */
+  font-weight: 700;
+  text-align: center;
+}
+
+.right .row-2 {
+  /* padding: 0 10px 0 5px; */
+  margin-top: 75px;
+  text-align: right;
+}
+
+.right .row-3 {
+  margin-top: 50px;
+  text-align: right;
+}
+
+.right .row-4,
+.right .row-5,
+.right .row-6 {
+  margin-top: 15px;
+  text-align: right;
+}
+
+.location {
+  width: 400px;
+  word-wrap: break-word;
+}
+
+.text {
+  height: 45px;
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  text-align: right;
+  border: 2px solid black;
+  border-top: none;
+  border-right: none;
+  /* font-family: "Poppins", sans-serif; */
+  font-weight: 700;
+}
+
+.text span {
+  padding: 0 1rem;
+}
+
+.text .word {
+  margin-top: 15px;
+}
+
+.value {
+  height: 45px;
+  flex: 0.2;
+  border: 2px solid black;
+  border-top: none;
+  /* font-family: "Poppins", sans-serif; */
+  font-weight: 700;
+  text-align: right;
+}
+
+.footer {
+  transform: scale(0.89);
+}
+
+.total-row {
+  margin-bottom: 5px;
+}
+
+::-webkit-scrollbar {
+  background: transparent;
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 15px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}

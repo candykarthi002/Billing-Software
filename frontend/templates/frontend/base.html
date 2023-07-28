@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Billing Software</title>
+    <link rel="stylesheet" href="{% static 'frontend/style.css' %}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+  </head>
+  <body>
+    <h1>Billing Software</h1>
+    <a href="/" class="back-btn"><ion-icon name="arrow-back"></ion-icon></a>
+    {% if bill %}
+    <form action="/edit/{{ bill.bill_no }}" method="post">
+      <div class="form-container">
+        {% csrf_token %}
+        <div class="bill-info">
+          <h3>Bill Information</h3>
+          <div>
+            <div class="bill-no">
+              <label for="bill-no">BILL NO/SAT/CHE: </label>
+              <br />
+              <input
+                id="bill-no"
+                type="text"
+                name="bill-no"
+                placeholder="Bill no"
+                value="{{ bill.bill_no }}"
+                required
+              />
+            </div>
+            <div class="bill-date">
+              <label for="bill-date">BILL Date: </label>
+              <br />
+              <input type="date" name="bill-date" placeholder="Bill Date"
+              id="new-bill bill-date" value="{{ bill.bill_date|date:"Y-m-d" }}"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="cust-details">
+          <h3>Customer Details</h3>
+          <div>
+            <div class="cust-name">
+              <label for="cust-name">Customer Name: </label>
+              <br />
+              <input
+                type="text"
+                name="cust-name"
+                placeholder="Customer Name"
+                id="cust-name"
+                value="{{ bill.customer_name }}"
+              />
+            </div>
+            <div class="cust-addr">
+              <h3>Customer Address</h3>
+              <div>
+                <div class="cust-addr-1">
+                  <label for="cust-addr-1">Customer Address(Line 1): </label>
+                  <br />
+                  <input
+                    type="text"
+                    name="cust-addr-1"
+                    placeholder="Customer Address Line 1"
+                    id="cust-addr-1"
+                    value="{{ bill.customer_address_line_1 }}"
+                  />
+                </div>
+                <div class="cust-addr-2">
+                  <label for="cust-addr-2">Customer Address(Line 2): </label>
+                  <br />
+                  <input
+                    type="text"
+                    name="cust-addr-2"
+                    placeholder="Customer Address Line 2"
+                    id="cust-addr-2"
+                    value="{{ bill.customer_address_line_2 }}"
+                  />
+                </div>
+                <div class="cust-addr-3">
+                  <label for="cust-addr-3">Customer Address(Line 3): </label>
+                  <br />
+                  <input
+                    type="text"
+                    name="cust-addr-3"
+                    placeholder="Customer Address Line 3"
+                    id="cust-addr-3"
+                    value="{{ bill.customer_address_line_3 }}"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="location">
+          <h3>Location Information</h3>
+          <div>
+            <div class="from">
+              <label for="from">From: </label>
+              <br />
+              <input
+                type="text"
+                id="from"
+                value="{{ bill.from_field }}"
+                name="from"
+                placeholder="From"
+              />
+            </div>
+            <div class="to">
+              <label for="to">To: </label>
+              <br />
+              <input
+                type="text"
+                id="to"
+                name="to"
+                placeholder="To"
+                value="{{ bill.to_field }}"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="lr-info">
+          <h3>L.R Information</h3>
+          <div>
+            <div class="lr-no">
+              <label for="lr-no">L.R NO: </label>
+              <br />
+              <input
+                type="text"
+                id="lr-no"
+                name="lr-no"
+                placeholder="L.R no"
+                value="{{ bill.lr_no }}"
+              />
+            </div>
+            <div class="lr-date">
+              <label for="lr-date">L.R Date: </label>
+              <br />
+              <input type="date" id="lr-date" class="old-lr-date" name="lr-date"
+              value="{{ bill.lr_date|date:"Y-m-d" }}" />
+            </div>
+            <div class="invoice-no">
+              <label for="invoice-no">INVOICE NO: </label>
+              <br />
+              <input
+                type="text"
+                name="invoice-no"
+                placeholder="Invoice no"
+                id="invoice-no"
+                value="{{ bill.invoice_no }}"
+              />
+            </div>
+            <div class="truck-no">
+              <label for="truck-no">TRUCK NO: </label>
+              <br />
+              <input
+                type="text"
+                name="truck-no"
+                placeholder="Truck no"
+                id="truck-no"
+                value="{{ bill.truck_no }}"
+              />
+            </div>
+            <div class="container-no">
+              <label for="container-no">CONTAINER NO: </label>
+              <br />
+              <input
+                type="text"
+                name="container-no"
+                placeholder="Conatiner no"
+                id="container-no"
+                value="{{ bill.container_no }}"
+              />
+            </div>
+            <div class="be-no">
+              <label for="be-no">B.E NO: </label>
+              <br />
+              <input
+                type="text"
+                id="be-no"
+                value="{{ bill.be_no }}"
+                name="be-no"
+                placeholder="B.E no"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="charges">
+          <h3>Charges Information</h3>
+          <div>
+            <div class="freight-charges">
+              <label for="freight-charges">FREIGHT CHARGES: </label>
+              <br />
+              <input
+                type="text"
+                name="freight-charges"
+                placeholder="Freight Charges"
+                id="freight-charges"
+                value="{{ bill.freight_charges }}"
+              />
+            </div>
+            <div class="hamali-charges">
+              <label for="hamali-charges">HAMALI CHARGES: </label>
+              <br />
+              <input
+                type="text"
+                name="hamali-charges"
+                placeholder="Hamali Charges"
+                id="hamali-charges"
+                value="{{ bill.hamali_charges }}"
+              />
+            </div>
+            <div class="halting-charges">
+              <label for="halting-charges">HALTING CHARGES: </label>
+              <br />
+              <input
+                type="text"
+                name="halting-charges"
+                placeholder="Halting Charges"
+                id="halting-charges"
+                value="{{ bill.halting_charges }}"
+              />
+            </div>
+            <div class="weight-charges">
+              <label for="weight-charges">WEIGHT CHARGES: </label>
+              <br />
+              <input
+                type="text"
+                name="weight-charges"
+                placeholder="Weight Charges"
+                id="weight-charges"
+                value="{{ bill.weight_charges }}"
+              />
+            </div>
+            <div class="bill-ex-charges">
+              <label for="bill-ex-charges">BILL EXCHANGE CHARGES: </label>
+              <br />
+              <input
+                type="text"
+                name="bill-ex-charges"
+                placeholder="Bill Exchange Charges"
+                id="bill-ex-charges"
+                value="{{ bill.bill_exchange_charges }}"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="btn-group">
+        <input class="submit-btn" type="submit" value="Update & Print" />
+      </div>
+    </form>
+    {% else %}
+    <form action="/generate/" method="post">
+      <div class="form-container">
+        {% csrf_token %}
+        <div class="bill-info">
+          <h3>Bill Information</h3>
+          <div>
+            <div class="bill-no">
+              <label for="bill-no">BILL NO/SAT/CHE: </label>
+              <br />
+              <input
+                id="bill-no"
+                type="text"
+                name="bill-no"
+                placeholder="Bill no"
+                required
+              />
+            </div>
+            <div class="bill-date">
+              <label for="bill-date">BILL Date: </label>
+              <br />
+              <input
+                type="date"
+                name="bill-date"
+                placeholder="Bill Date"
+                id="bill-date"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="cust-details">
+          <h3>Customer Details</h3>
+          <div>
+            <div class="cust-name">
+              <label for="cust-name">Customer Name: </label>
+              <br />
+              <input
+                type="text"
+                name="cust-name"
+                placeholder="Customer Name"
+                id="cust-name"
+              />
+            </div>
+            <div class="cust-addr">
+              <h3>Customer Address</h3>
+              <div>
+                <div class="cust-addr-1">
+                  <label for="cust-addr-1">Customer Address(Line 1): </label>
+                  <br />
+                  <input
+                    type="text"
+                    name="cust-addr-1"
+                    placeholder="Customer Address Line 1"
+                    id="cust-addr-1"
+                  />
+                </div>
+                <div class="cust-addr-2">
+                  <label for="cust-addr-2">Customer Address(Line 2): </label>
+                  <br />
+                  <input
+                    type="text"
+                    name="cust-addr-2"
+                    placeholder="Customer Address Line 2"
+                    id="cust-addr-2"
+                  />
+                </div>
+                <div class="cust-addr-3">
+                  <label for="cust-addr-3">Customer Address(Line 3): </label>
+                  <br />
+                  <input
+                    type="text"
+                    name="cust-addr-3"
+                    placeholder="Customer Address Line 3"
+                    id="cust-addr-3"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="location">
+          <h3>Location Information</h3>
+          <div>
+            <div class="from">
+              <label for="from">From: </label>
+              <br />
+              <input type="text" id="from" name="from" placeholder="From" />
+            </div>
+            <div class="to">
+              <label for="to">To: </label>
+              <br />
+              <input type="text" id="to" name="to" placeholder="To" />
+            </div>
+          </div>
+        </div>
+        <div class="lr-info">
+          <h3>L.R Information</h3>
+          <div>
+            <div class="lr-no">
+              <label for="lr-no">L.R NO: </label>
+              <br />
+              <input type="text" id="lr-no" name="lr-no" placeholder="L.R no" />
+            </div>
+            <div class="lr-date">
+              <label for="lr-date">L.R Date: </label>
+              <br />
+              <input type="date" id="lr-date" name="lr-date" />
+            </div>
+            <div class="invoice-no">
+              <label for="invoice-no">INVOICE/D.C. NO: </label>
+              <br />
+              <input
+                type="text"
+                name="invoice-no"
+                placeholder="Invoice no"
+                id="invoice-no"
+              />
+            </div>
+            <div class="truck-no">
+              <label for="truck-no">TRUCK NO: </label>
+              <br />
+              <input
+                type="text"
+                name="truck-no"
+                placeholder="Truck no"
+                id="truck-no"
+              />
+            </div>
+            <div class="container-no">
+              <label for="container-no">CONTAINER NO: </label>
+              <br />
+              <input
+                type="text"
+                name="container-no"
+                placeholder="Conatiner no"
+                id="container-no"
+              />
+            </div>
+            <div class="be-no">
+              <label for="be-no">B.E NO: </label>
+              <br />
+              <input type="text" id="be-no" name="be-no" placeholder="B.E no" />
+            </div>
+          </div>
+        </div>
+        <div class="charges">
+          <h3>Charges Information</h3>
+          <div>
+            <div class="freight-charges">
+              <label for="freight-charges">FREIGHT CHARGES: </label>
+              <br />
+              <input
+                type="text"
+                name="freight-charges"
+                placeholder="Freight Charges"
+                id="freight-charges"
+              />
+            </div>
+            <div class="hamali-charges">
+              <label for="hamali-charges">HAMALI CHARGES: </label>
+              <br />
+              <input
+                type="text"
+                name="hamali-charges"
+                placeholder="Hamali Charges"
+                id="hamali-charges"
+              />
+            </div>
+            <div class="halting-charges">
+              <label for="halting-charges">HALTING CHARGES: </label>
+              <br />
+              <input
+                type="text"
+                name="halting-charges"
+                placeholder="Halting Charges"
+                id="halting-charges"
+              />
+            </div>
+            <div class="weight-charges">
+              <label for="weight-charges">WEIGHT CHARGES: </label>
+              <br />
+              <input
+                type="text"
+                name="weight-charges"
+                placeholder="Weight Charges"
+                id="weight-charges"
+              />
+            </div>
+            <div class="bill-ex-charges">
+              <label for="bill-ex-charges">BILL EXCHANGE CHARGES: </label>
+              <br />
+              <input
+                type="text"
+                name="bill-ex-charges"
+                placeholder="Bill Exchange Charges"
+                id="bill-ex-charges"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="btn-group">
+        <input class="submit-btn" type="submit" value="Save & Print" />
+      </div>
+    </form>
+    <div class="copyright">Copyrights © 2023. All rights reserved</div>
+    {% endif %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+
+    <script>
+      const currentDate = new Date();
+      console.log(currentDate.toISOString().split("T")[0]);
+      formattedDate = currentDate.toISOString().split("T")[0];
+      //const formattedDate = currentDate.toISOString().slice(0, 10);
+      if (document.getElementById("bill-date").value === "") {
+        document.getElementById("bill-date").value = formattedDate;
+      }
+      /*function convertToPDF() {
+        document.querySelector("form").submit();
+      }*/
+    </script>
+  </body>
+</html>

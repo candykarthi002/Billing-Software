@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Billing Software</title>
+    <link rel="stylesheet" href={% static 'frontend/home.css' %}>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+  </head>
+  <body>
+    <div class="main-container">
+      <h1>Billing Software</h1>
+      <div class="nav-bar">
+        <div class="bill-btns">
+          <a href="form/" class="create-bill btn">
+            <ion-icon name="add"></ion-icon>
+          </a>
+          <a href="all-bills/" class="all-bills btn">
+            <ion-icon name="file-tray-stacked-outline"></ion-icon>
+          </a>
+        </div>
+        <div class="report-btns">
+          <a href="dashboard/" class="dashboard btn">
+            <ion-icon name="analytics"></ion-icon>
+          </a>
+          <a href="statement/" class="statement btn">
+            <ion-icon name="newspaper-outline"></ion-icon>
+          </a>
+          <a href="vehicle-report/" class="vehicle-report btn">
+            <ion-icon name="bus-outline"></ion-icon>
+          </a>
+        </div>
+      </div>
+      <div class="bill-list">
+        <div class="heading">
+          <span>Recently Added Bills</span
+          ><a href="all-bills/"
+            >View all <ion-icon name="arrow-forward-outline"></ion-icon
+          ></a>
+        </div>
+        {% if bills %} {% for bill in bills %}
+        <div
+          class="bill"
+          onclick="window.location.replace('/result/{{ bill.bill_no }}');"
+        >
+          <div class="row-1">
+            <span class="bill-no">Bill No: {{ bill.bill_no }}</span>
+            <span>Bill Date: {{ bill.bill_date}}</span>
+          </div>
+          <div class="row-2">
+            <span>From: {{ bill.from_field }}</span>
+            <span>To: {{ bill.to_field }}</span>
+          </div>
+        </div>
+        {% endfor %} {% else %}
+        <div class="no-bills">No Bills Added Recently.</div>
+        {% endif %}
+      </div>
+    </div>
+    <div class="copyright">Copyrights © 2023. All rights reserved</div>
+  </body>
+</html>

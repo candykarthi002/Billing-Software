@@ -1,0 +1,124 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Generated Bill</title>
+    <link rel="stylesheet" href={% static 'frontend/result.css' %} >
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+  </head>
+  <body>
+    <div class="no-print">
+      <a href="/" class="home btn"><ion-icon name="home"></ion-icon></a>
+      <a href="/edit/{{ bill_no }}" class="edit btn">
+        <ion-icon name="create"></ion-icon>
+      </a>
+      <a href="/delete/{{ bill_no }}" class="delete btn"
+        ><ion-icon name="trash"></ion-icon
+      ></a>
+      <button class="print btn" onclick="getPrint()">
+        <ion-icon name="print-outline"></ion-icon>
+      </button>
+    </div>
+    <div class="main-container">
+      <img src={% static 'frontend/header1.png' %} alt="header" />
+      <div class="cust-details">
+        <div>
+          TO
+          <br />
+          <div class="cust-name">{{ cust_name }}</div>
+          <div class="cust-addr">
+            <div class="addr-1">
+              {{ cust_addr_1 }}
+              <br />
+            </div>
+            <div class="addr-2">
+              {{ cust_addr_2 }}
+              <br />
+            </div>
+            <div class="addr-3">{{ cust_addr_3 }}</div>
+          </div>
+        </div>
+      </div>
+      <div class="bill-info">
+        <span>BILL NO/SAT/CHE: {{bill_no}}</span>
+        <span>2023-2024</span>
+        <span>DATE: {{ bill_date }}</span>
+      </div>
+      <div class="tbl-head">
+        <span><div>Particulars</div></span><span>Amount</span>
+      </div>
+      <div class="tbl-body">
+        <div class="left">
+          <div class="start">Being the Transportation of your consignment</div>
+          <div class="row-2">
+            <div class="location">{{ from }} TO {{ to }}</div>
+            <div class="freight">FREIGHT CHARGES:</div>
+          </div>
+          <div class="row-3">
+            <div class="lr-no">L.R NO: {{ lr_no }}</div>
+            <div class="hamali">HAMALI CHARGES:</div>
+          </div>
+          <div class="row-4">
+            <div class="lr-date">L.R DATE: {{ lr_date }}</div>
+            <div class="halting">HALTING CHARGES:</div>
+          </div>
+          <div class="row-5">
+            <div class="invoice-no">INVOICE/D.C NO: {{ invoice_no }}</div>
+            <div class="weight">WEIGHT CHARGES:</div>
+          </div>
+          <div class="row-6">
+            <div class="truck-no">TRUCK NO: {{ truck_no }}</div>
+            <div class="bill-ex">BILL EXCHANGE CHARGES:</div>
+          </div>
+          <div class="row-7">CONTAINER NO: {{ container_no }}</div>
+          <div class="row-8">B.E NO: {{ be_no }}</div>
+        </div>
+        <div class="right">
+          <div class="row-2">
+            <div class="f-charges">{{ freight_charges }}</div>
+          </div>
+          <div class="row-3">
+            <div class="ham-charges">{{ hamali_charges }}</div>
+          </div>
+          <div class="row-4">
+            <div class="hal-charges">{{ halting_charges }}</div>
+          </div>
+          <div class="row-5">
+            <div class="w-charges">{{ weight_charges }}</div>
+          </div>
+          <div class="row-6">
+            <div class="bill-ex-charges">{{ bill_ex_charges }}</div>
+          </div>
+        </div>
+      </div>
+      <div class="total-row">
+        <div class="text">
+          <span class="word">{{ total_in_words }} only</span>
+          <span>TOTAL</span>
+        </div>
+        <div class="value">{{ total }}</div>
+      </div>
+      <img class="footer" src={% static 'frontend/footer.png' %} alt="footer" />
+    </div>
+    <script>
+      function getPrint() {
+        window.print();
+      }
+    </script>
+  </body>
+</html>

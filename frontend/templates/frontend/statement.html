@@ -1,0 +1,119 @@
+{% load static %} {% load dict_parser %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Generated Bill</title>
+    <link rel="stylesheet" href={% static 'frontend/statement.css' %} >
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+  </head>
+  <body>
+    <a href="/" class="home btn"><ion-icon name="home"></ion-icon></a>
+    <form method="post">
+      <button type="submit" class="export btn">
+        {% csrf_token %}
+        <ion-icon name="share-outline"></ion-icon>
+      </button>
+    </form>
+
+    <div class="main-container">
+      <h1>Statements</h1>
+      <div class="bill-list">
+        <h1 class="heading">Filter Form</h1>
+        <form id="filter-form" method="get">
+          {% for field in myFilter.form %}
+          <div class="field">
+            <label for="{{ field.auto_id }}">{{ field.label }}</label>
+            {{ field }}
+          </div>
+          {% endfor %}
+          <button type="submit" class="field">
+            Filter<ion-icon name="filter-outline"></ion-icon>
+          </button>
+        </form>
+      </div>
+
+      <div class="bill-list">
+        {% if bills %} {% for customer_name, data in bills.items %}
+        <h1>{{ customer_name }}</h1>
+        <table class="tbl">
+          <thead>
+            <tr>
+              <th>L.R. NO</th>
+              <th>L.R. DATE</th>
+              <th>BILL NO</th>
+              <th>BILL DATE</th>
+              <th>FROM</th>
+              <th>TO</th>
+              <th>TOTAL</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for bill in data %}
+            <tr>
+              <td>{{ bill.lr_no }}</td>
+              <td>{{ bill.lr_date|date:"d.m.Y" }}</td>
+              <td>{{ bill.bill_no }}</td>
+              <td>{{ bill.bill_date|date:"d.m.Y" }}</td>
+              <td>{{ bill.from_field }}</td>
+              <td>{{ bill.to_field }}</td>
+              <td>{{ bill.total }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        <div class="final-total">
+          <div class="inner">
+            <div>TOTAL</div>
+            <div>{{ totals|get:customer_name }}</div>
+          </div>
+        </div>
+        {% endfor %} {% else %}
+        <div class="no-data">No Bills Found.</div>
+        {% endif %}
+      </div>
+    </div>
+    <div class="copyright">Copyrights © 2023. All rights reserved</div>
+    <script>
+      let formEl = document.querySelectorAll(".field");
+      console.log(formEl);
+      for (let i = 0; i < formEl.length; i++) {
+        formEl[i].classList.add(`field-${i + 1}`);
+        if (i === 0) {
+          formEl[i].children[0].innerText = "Customer Name";
+        }
+        if (i === 1) {
+          formEl[i].children[0].innerText = "Bill Date From";
+          formEl[i].children[1].type = "date";
+        }
+        if (i === 2) {
+          formEl[i].children[0].innerText = "Bill Date To";
+          formEl[i].children[1].type = "date";
+        }
+        if (i === 3) {
+          formEl[i].children[0].innerText = "L.R. Date From";
+          formEl[i].children[1].type = "date";
+        }
+        if (i === 4) {
+          formEl[i].children[0].innerText = "L.R. Date To";
+          formEl[i].children[1].type = "date";
+        }
+      }
+      //window.scrollTo(0, 400);
+    </script>
+  </body>
+</html>

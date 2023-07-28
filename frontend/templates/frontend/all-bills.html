@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>All Bills</title>
+    <link rel="stylesheet" href={% static 'frontend/all-bills.css' %}>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+  </head>
+  <body>
+    <a href="/" class="home btn"><ion-icon name="home"></ion-icon></a>
+    <form method="post">
+      <button type="submit" class="export btn">
+        {% csrf_token %}
+        <ion-icon name="share-outline"></ion-icon>
+      </button>
+    </form>
+    <div class="main-container">
+      <h1>Billing Software</h1>
+      <div class="bill-list">
+        <h1 class="heading">Filter Form</h1>
+        <form id="filter-form" method="get">
+          {% for field in myFilter.form %}
+          <div class="field">
+            <label for="{{ field.auto_id }}">{{ field.label }}</label>
+            {{ field }}
+          </div>
+          {% endfor %}
+          <button type="submit" class="field">
+            Filter<ion-icon name="filter-outline"></ion-icon>
+          </button>
+        </form>
+      </div>
+      <div class="bill-list">
+        <div class="heading">All Bills ({{ bill_count }})</div>
+        {% if bills %} {% for bill in bills %}
+        <div
+          class="bill"
+          onclick="window.location.replace('/result/{{ bill.bill_no }}');"
+        >
+          <div class="row-1">
+            <span class="bill-no">Bill No: {{ bill.bill_no }}</span>
+            <span>Bill Date: {{ bill.bill_date}}</span>
+          </div>
+          <div class="row-2">
+            <span>From: {{ bill.from_field }}</span>
+            <span>To: {{ bill.to_field }}</span>
+          </div>
+        </div>
+        {% endfor %} {% else %}
+        <div class="no-bills">No Bills Added Recently.</div>
+        {% endif %}
+      </div>
+    </div>
+    <div class="copyright">Copyrights © 2023. All rights reserved</div>
+    <script>
+      let formEl = document.querySelectorAll(".field");
+      console.log(formEl);
+      for (let i = 0; i < formEl.length; i++) {
+        formEl[i].classList.add(`field-${i + 1}`);
+        if (i === 0) {
+          formEl[i].children[0].innerText = "Bill No";
+        }
+      }
+    </script>
+  </body>
+</html>
